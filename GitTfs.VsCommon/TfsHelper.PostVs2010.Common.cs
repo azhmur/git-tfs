@@ -114,19 +114,19 @@ namespace Sep.Git.Tfs.VsCommon
                 throw new GitTfsException("An unexpected error occured when trying to find the root changeset.\nFailed to find root changeset for " + tfsPathBranchToCreate + " branch in " + tfsPathParentBranch + " branch");
             }
 
-            if (merge.SourceItem.ChangeType.HasFlag(ChangeType.Branch)
-                || merge.SourceItem.ChangeType.HasFlag(ChangeType.Merge)
-                || merge.SourceItem.ChangeType.HasFlag(ChangeType.Add))
+            //if (merge.SourceItem.ChangeType.HasFlag(ChangeType.Branch)
+            //    || merge.SourceItem.ChangeType.HasFlag(ChangeType.Merge)
+            //    || merge.SourceItem.ChangeType.HasFlag(ChangeType.Add))
             {
                 Trace.WriteLine("Found C" + merge.SourceChangeset.ChangesetId + " on branch " + merge.SourceItem.Item.ServerItem);
                 return merge.SourceChangeset;
             }
-            if (merge.SourceItem.ChangeType.HasFlag(ChangeType.Rename)
-                || merge.SourceItem.ChangeType.HasFlag(ChangeType.SourceRename))
-            {
-                Trace.WriteLine("Found C" + merge.TargetChangeset.ChangesetId + " on branch " + merge.TargetItem.Item);
-                return merge.TargetChangeset;
-            }
+            //if (merge.SourceItem.ChangeType.HasFlag(ChangeType.Rename)
+            //    || merge.SourceItem.ChangeType.HasFlag(ChangeType.SourceRename))
+            //{
+            //    Trace.WriteLine("Found C" + merge.TargetChangeset.ChangesetId + " on branch " + merge.TargetItem.Item);
+            //    return merge.TargetChangeset;
+            //}
             throw new GitTfsException(
                 "Don't know (yet) how to find the root changeset for an ExtendedMerge of type " +
                 merge.SourceItem.ChangeType,
